@@ -1,0 +1,18 @@
+%h4 Hello #{@user.full_name},
+
+%p We recently discovered a security issue on Doge4commit. This issue allowed someone to change the Dogecoin address of other users.
+
+%p
+  The problem is now fixed. To ensure our database is clean we decided to clear all the addresses.
+  Please set your Dogecoin address again:
+  = link_to('Sign in', login_users_url(token: @user.login_token)) + "."
+
+%p We think only one tip was stolen. It will be sent again to its owner when he sets his address.
+
+%p Sorry for this inconvenience.
+
+%p= link_to "dog4commit.com", "http://dog4commit.com/"
+
+%p
+  %small
+    = link_to "Don't notify me anymore.", login_users_url(token: @user.login_token, unsubscribe: true)

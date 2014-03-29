@@ -1,0 +1,19 @@
+%h1= @user.name
+%p
+  %strong Balance
+%p
+  = btc_human @user.balance
+%p
+  %small
+    You will get the money of your tips when the project they belong hits the threshold of
+    = btc_human CONFIG["min_payout"].to_d * DogecoinBalanceUpdater::COIN
+%p
+  %strong E-mail
+%p= @user.email
+= form_for @user, html: {role: 'form', class: 'form-inline"'} do |f|
+  - if @user.errors.size > 0
+    .alert.alert-danger Dogecoin address is invalid.
+  .form-group
+    = f.label :bitcoin_address
+    = f.text_field :bitcoin_address, class: 'form-control', placeholder: 'Your dogecoin address'
+  = f.button :update, class: 'btn btn-default'
